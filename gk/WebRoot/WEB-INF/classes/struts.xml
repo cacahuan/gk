@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 打开静态方法调用的限制 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<!-- 配置国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="i18n"></constant>
+	<!-- 设置开发模式,重新加载国际化资源文件和配置文件 -->
+    <constant name="struts.devMode" value="true"></constant>
+    <package name="default" namespace="/" extends="struts-default">
+    
+    	
+    	<!-- 国际化 -->
+    	<action name="testI18n_*" class="com.jxnu.I18nAction" method="{1}">
+    		<result name="login">/login.jsp</result>
+    		<result name="register">/register.jsp</result>
+    	</action>
+    	
+    	<!-- 登录 -->
+    	<action name="LoginAction" class="com.jxnu.LoginAction">
+    		<result>/main.jsp</result>
+    		<result name="input">/login.jsp</result>
+    	</action>
+    	
+    	
+    	<!-- 验证码 -->
+    	<action name="CodeAction" class="com.jxnu.CodeAction">
+    		<result type="stream">
+    			<param name="contentType">image/jpeg</param>
+    			<param name="inputName">inputStream</param>
+    		</result>
+    	</action>
+    	
+    	<!-- 注册 -->
+    	<action name="RegisterAction" class="com.jxnu.RegisterAction" method="testRegister">
+    		<result>/login.jsp</result>
+    		<result name="input">/register.jsp</result>
+    	</action>
+    	
+    	
+    </package>
+
+</struts>
